@@ -40,7 +40,7 @@ class RestUsuariosController extends AppController {
                     'usuario' => $this->Auth->usuario(),
                     '_serialize' => array('usuario')
                 ));
-                // $this->response->send();
+                $this->response->send();
             } else {
 
                 $this->set(array(

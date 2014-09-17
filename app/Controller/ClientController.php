@@ -90,6 +90,22 @@ class ClientController extends AppController {
         $this -> render('/Client/request_response');
     }
     
+    public function request_login(){
+     
+        // remotely post the information to the server
+        $link =  "http://" . $_SERVER['HTTP_HOST'] . $this->webroot.'rest_usuarios.json';
+ 
+        $data = null;
+        $httpSocket = new HttpSocket();
+        $data['Usuario']['username'] = 'juanito';
+        $data['Usuario']['password'] = '123456';
+        $response = $httpSocket->get($link, $data );
+        $this->set('response_code', $response->code);
+        $this->set('response_body', $response->body);
+         
+        $this -> render('/Client/request_response');
+    }
+    
   
 }
    

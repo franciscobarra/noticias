@@ -39,7 +39,7 @@ class AppController extends Controller {
 	);
     
    public function beforeFilter() {
- 
+       
     if(in_array($this->params['controller'],array('rest_anuncios'))){
         $this->Auth->allow();
         $this->Security->unlockedActions = array('edit','delete','add','view');
@@ -55,5 +55,20 @@ class AppController extends Controller {
     }else{
         $this->Auth->allow();         
     }
+    
+        $this->Auth->sessionKey = false;
+        $this->Auth->authorize = array('Controller');
+        $this->Auth->authenticate = array(
+            'all' => array(
+                //'scope' => array('User.is_active' => 1)
+            ),
+            'Basic'
+        );
+
+        $this->Auth->allow();
+    
+        
 }
+
 }
+
