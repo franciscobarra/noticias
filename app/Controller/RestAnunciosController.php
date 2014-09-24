@@ -36,7 +36,7 @@ class RestAnunciosController extends AppController {
     }
  
      
-    public function edit($id) {
+    public function edit($id = null) {
         $this->Anuncio->id = $id;
         if ($this->Anuncio->save($this->request->data)) {
             $message = 'Saved';

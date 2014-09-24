@@ -36,7 +36,8 @@
  */
 	CakePlugin::routes();
         Router::mapResources('rest_anuncios');
-        Router::mapResources("rest_posts");
+        Router::mapResources("rest_roles");
+        Router::mapResources("rest_pais");
         Router::mapResources("rest_usuarios");
         Router::parseExtensions();
 /**

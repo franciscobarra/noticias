@@ -48,6 +48,7 @@ class AppController extends Controller {
         $this->Auth->allow();         
     }
     
+  /*
     if(in_array($this->params['controller'],array('rest_usuarios'))){
         $this->Auth->allow();
         $this->Security->unlockedActions = array('edit','delete','add','view');
@@ -64,7 +65,7 @@ class AppController extends Controller {
             ),
             'Basic'
         );
-
+*/
         $this->Auth->allow();
     
         

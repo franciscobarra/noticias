@@ -1,27 +1,22 @@
 <?php
 
-App::uses('AppController', 'Controller');
-App::uses('AuthComponent', 'Controller/Component');
-
-
-class RestUsuariosController extends AppController {
-   
-    public $uses = array('Usuario');
+class RestRolesController extends AppController {
+    public $uses = array('Rol');
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
-
+ 
  
     public function index() {
-        $usuarios = $this->Usuarios->find('all');
+        $roles = $this->Roles->find('all');
         $this->set(array(
-            'usuarios' => $usuarios,
-            '_serialize' => array('usuarios')
+            'roles' => $roles,
+            '_serialize' => array('roles')
         ));
     }
  
     public function add() {
-        $this->Usuarios->create();
-        if ($this->Usuario->save($this->request->data)) {
+        $this->Roles->create();
+        if ($this->Roles->save($this->request->data)) {
              $message = 'Created';
         } else {
             $message = 'Error';
@@ -33,17 +28,17 @@ class RestUsuariosController extends AppController {
     }
      
     public function view($id) {
-        $usuarios = $this->Usuario->findById($id);
+        $roles = $this->Roles->findById($id);
         $this->set(array(
-            'usuarios' => $usuarios,
-            '_serialize' => array('usuarios')
+            'roles' => $roles,
+            '_serialize' => array('roles')
         ));
     }
  
      
-    public function edit($id = null) {
-        $this->Usuario->id = $id;
-        if ($this->Usuario->save($this->request->data)) {
+    public function edit($id) {
+        $this->Roles->id = $id;
+        if ($this->Roles->save($this->request->data)) {
             $message = 'Saved';
         } else {
             $message = 'Error';
@@ -55,7 +50,7 @@ class RestUsuariosController extends AppController {
     }
      
     public function delete($id) {
-        if ($this->Usuario->delete($id)) {
+        if ($this->Roles->delete($id)) {
             $message = 'Deleted';
         } else {
             $message = 'Error';
@@ -65,5 +60,4 @@ class RestUsuariosController extends AppController {
             '_serialize' => array('message')
         ));
     }
-
-}
+}       

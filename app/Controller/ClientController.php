@@ -25,7 +25,7 @@ class ClientController extends AppController {
     public function request_view($id){
      
         // remotely post the information to the server
-        $link =  "http://" . $_SERVER['HTTP_HOST'] . $this->webroot.'rest_usuarios/'.$id.'.json';
+        $link =  "http://" . $_SERVER['HTTP_HOST'] . $this->webroot.'rest_anuncios/'.$id.'.json';
  
         $data = null;
         $httpSocket = new HttpSocket();
@@ -43,13 +43,14 @@ class ClientController extends AppController {
  
         $data = null;
         $httpSocket = new HttpSocket();
-        $data['Anuncio']['titulo'] = 'El pichulon actualizado';
+        $data['Anuncio']['id'] = $id;
+        $data['Anuncio']['titulo'] = 'El  wetaa!!';
         $data['Anuncio']['cuerpo'] = 'Cuerpazo actualizado';
         $data['Anuncio']['fecha_publicacion'] = '11-12-2013';
         $data['Anuncio']['fecha_vigencia'] = '11-12-2015';
         $data['Anuncio']['longitud'] = '4000';
         $data['Anuncio']['latitud'] = '5000';
-        $response = $httpSocket->put($link, $data );
+        $response = $httpSocket->post($link, $data );
         $this->set('response_code', $response->code);
         $this->set('response_body', $response->body);
          
@@ -89,22 +90,7 @@ class ClientController extends AppController {
          
         $this -> render('/Client/request_response');
     }
-    
-    public function request_login(){
-     
-        // remotely post the information to the server
-        $link =  "http://" . $_SERVER['HTTP_HOST'] . $this->webroot.'rest_usuarios.json';
- 
-        $data = null;
-        $httpSocket = new HttpSocket();
-        $data['Usuario']['username'] = 'juanito';
-        $data['Usuario']['password'] = '123456';
-        $response = $httpSocket->get($link, $data );
-        $this->set('response_code', $response->code);
-        $this->set('response_body', $response->body);
-         
-        $this -> render('/Client/request_response');
-    }
+
     
   
 }

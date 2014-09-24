@@ -6,20 +6,11 @@ App::uses('AppModel', 'Model');
  * User Model
  *
  */
-class User extends AppModel {
+class Usuario extends AppModel {
 
-    public function beforeSave($options = array()) {
-        if (isset($this->data[$this->alias]['password'])) {
-            $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
-        }
-        if (!isset($this->data[$this->alias]['role'])) {
-            $this->data[$this->alias]['role'] = 'author';
-        }
-//        if (!isset($this->data[$this->alias]['is_active'])) {
-//            $this->data[$this->alias]['is_active'] = 1;
-//        }
-        return true;
-    }
+ public $hasOne = array(
+        'Rol','Pais'
+ );
 
     public $validate = array(
         'username' => array(
