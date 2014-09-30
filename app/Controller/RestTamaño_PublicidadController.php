@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 App::uses('AuthComponent', 'Controller/Component');
 
 
-class RestUsuariosController extends AppController {
+class RestTamaño_PublicidadController extends AppController {
    
     public $uses = array('Usuario');
     public $helpers = array('Html', 'Form');
@@ -12,16 +12,16 @@ class RestUsuariosController extends AppController {
 
  
     public function index() {
-        $usuarios = $this->Usuarios->find('all');
+        $tamaño_publicidad = $this->Tamaño_Publicidad->find('all');
         $this->set(array(
-            'usuarios' => $usuarios,
-            '_serialize' => array('usuarios')
+            'tamaño_publicidad' => $tamaño_publicidad,
+            '_serialize' => array('tamaño_publicidad')
         ));
     }
  
     public function add() {
-        $this->Usuario->create();
-        if ($this->Usuario->save($this->request->data)) {
+        $this->Tamaño_Publicidad->create();
+        if ($this->Tamaño_Publicidad->save($this->request->data)) {
              $message = 'Created';
         } else {
             $message = 'Error';
@@ -33,17 +33,17 @@ class RestUsuariosController extends AppController {
     }
      
     public function view($id) {
-        $usuarios = $this->Usuario->findById($id);
+        $tamaño_publicidad = $this->Tamaño_Publicidad->findById($id);
         $this->set(array(
-            'usuarios' => $usuarios,
-            '_serialize' => array('usuarios')
+            'tamaño_publicidad' => $tamaño_publicidad,
+            '_serialize' => array('tamaño_publicidad')
         ));
     }
  
      
     public function edit($id = null) {
-        $this->Usuario->id = $id;
-        if ($this->Usuario->save($this->request->data)) {
+        $this->Tamaño_Publicidad->id = $id;
+        if ($this->Tamaño_Publicidad->save($this->request->data)) {
             $message = 'Saved';
         } else {
             $message = 'Error';
@@ -55,7 +55,7 @@ class RestUsuariosController extends AppController {
     }
      
     public function delete($id) {
-        if ($this->Usuario->delete($id)) {
+        if ($this->Tamaño_Publicidad->delete($id)) {
             $message = 'Deleted';
         } else {
             $message = 'Error';

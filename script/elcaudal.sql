@@ -34,23 +34,56 @@ CREATE TABLE IF NOT EXISTS `anuncios` (
   `fecha_vigencia` datetime DEFAULT NULL,
   `longitud` float DEFAULT NULL,
   `latitud` float DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id_usuario` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`),
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=14 ;
 
---
--- Volcado de datos para la tabla `anuncios`
---
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pais`
+-- Estructura de tabla para la tabla `publicidad`
 --
 
-CREATE TABLE IF NOT EXISTS `pais` (
+CREATE TABLE IF NOT EXISTS `anuncios` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(128) COLLATE utf8_bin DEFAULT NULL,
+  `fecha_publicacion` datetime DEFAULT NULL,
+  `fecha_vigencia` datetime DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `id_usuario` int(10) NOT NULL,
+  `id_categoria_publicidad` int(10) NOT NULL,
+  `id_tamaño_publicidad` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`),
+  KEY `id_categoria_publicidad` (`id_categoria_publicidad`),
+  KEY `id_tamaño_publicidad` (`id_tamaño_publicidad`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=14 ;
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Categoria_Publicidad`
+--
+
+CREATE TABLE IF NOT EXISTS `categoria_publicidad` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(128) COLLATE utf8_bin DEFAULT NULL,
-  `codigo` varchar(128) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Tamaño_Publicidad`
+--
+
+CREATE TABLE IF NOT EXISTS `tamaño_publicidad` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `tamaño` varchar(128) COLLATE utf8_bin DEFAULT NULL,
+  `costo` int (10) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
@@ -102,6 +135,14 @@ ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`id_pais`) REFERENCES `pais` (`id`) ON DELETE CASCADE;
 
+ALTER TABLE `anuncios`
+  ADD CONSTRAINT `anuncios_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+
+ALTER TABLE `publicidad`
+  ADD CONSTRAINT `anuncios_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `anuncios_ibfk_2` FOREIGN KEY (`id_categoria_publicidad`) REFERENCES `categoria_publicidad` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `anuncios_ibfk_3` FOREIGN KEY (`id_tamaño_publicidad`) REFERENCES `tamaño_publicidad` (`id`) ON DELETE CASCADE;
+ 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

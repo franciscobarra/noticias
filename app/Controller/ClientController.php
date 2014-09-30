@@ -64,6 +64,7 @@ class ClientController extends AppController {
  
         $data = null;
         $httpSocket = new HttpSocket();
+        // $data['Anuncio']['id_usuario'] = $this->Auth->user('id');
         $data['Anuncio']['titulo'] = 'El pichulon';
         $data['Anuncio']['cuerpo'] = 'Cuerpazo';
         $data['Anuncio']['fecha_publicacion'] = '11-12-2013';
