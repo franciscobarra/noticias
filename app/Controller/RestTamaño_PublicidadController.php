@@ -6,7 +6,7 @@ App::uses('AuthComponent', 'Controller/Component');
 
 class RestTamaño_PublicidadController extends AppController {
    
-    public $uses = array('Usuario');
+    public $uses = array('Tamaño_Publicidad');
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
 

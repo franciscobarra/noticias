@@ -4,24 +4,24 @@ App::uses('AppController', 'Controller');
 App::uses('AuthComponent', 'Controller/Component');
 
 
-class RestUsuariosController extends AppController {
+class RestImagenes_AnunciosController extends AppController {
    
-    public $uses = array('Usuario');
+    public $uses = array('Imagenes_Anuncios');
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
 
  
     public function index() {
-        $usuarios = $this->Usuario->find('all');
+        $imagenes_anuncios = $this->Imagenes_Anuncios->find('all');
         $this->set(array(
-            'usuarios' => $usuarios,
-            '_serialize' => array('usuarios')
+            'imagenes_anuncios' => $imagenes_anuncios,
+            '_serialize' => array('imagenes_anuncios')
         ));
     }
  
     public function add() {
-        $this->Usuario->create();
-        if ($this->Usuario->save($this->request->data)) {
+        $this->Imagenes_Anuncios->create();
+        if ($this->Imagenes_Anuncios->save($this->request->data)) {
              $message = 'Created';
         } else {
             $message = 'Error';
@@ -33,17 +33,17 @@ class RestUsuariosController extends AppController {
     }
      
     public function view($id) {
-        $usuarios = $this->Usuario->findById($id);
+        $imagenes_anuncios = $this->Imagenes_Anuncios->findById($id);
         $this->set(array(
-            'usuarios' => $usuarios,
-            '_serialize' => array('usuarios')
+            'imagenes_anuncios' => $imagenes_anuncios,
+            '_serialize' => array('imagenes_anuncios')
         ));
     }
  
      
     public function edit($id = null) {
-        $this->Usuario->id = $id;
-        if ($this->Usuario->save($this->request->data)) {
+        $this->Imagenes_Anuncios->id = $id;
+        if ($this->Imagenes_Anuncios->save($this->request->data)) {
             $message = 'Saved';
         } else {
             $message = 'Error';
@@ -55,7 +55,7 @@ class RestUsuariosController extends AppController {
     }
      
     public function delete($id) {
-        if ($this->Usuario->delete($id)) {
+        if ($this->Imagenes_Anuncios->delete($id)) {
             $message = 'Deleted';
         } else {
             $message = 'Error';
