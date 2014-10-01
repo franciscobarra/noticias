@@ -4,24 +4,24 @@ App::uses('AppController', 'Controller');
 App::uses('AuthComponent', 'Controller/Component');
 
 
-class RestTamaño_PublicidadController extends AppController {
+class RestNoticiasController extends AppController {
    
-    public $uses = array('Tamaño_Publicidad');
+    public $uses = array('Noticias');
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
 
  
     public function index() {
-        $tamaño_publicidad = $this->Tamaño_Publicidad->find('all');
+        $noticias = $this->Noticias->find('all');
         $this->set(array(
-            'tamaño_publicidad' => $tamaño_publicidad,
-            '_serialize' => array('tamaño_publicidad')
+            'noticias' => $noticias,
+            '_serialize' => array('noticias')
         ));
     }
  
     public function add() {
-        $this->Tamaño_Publicidad->create();
-        if ($this->Tamaño_Publicidad->save($this->request->data)) {
+        $this->Noticias->create();
+        if ($this->Noticias->save($this->request->data)) {
              $message = 'Created';
         } else {
             $message = 'Error';
@@ -33,17 +33,17 @@ class RestTamaño_PublicidadController extends AppController {
     }
      
     public function view($id) {
-        $tamaño_publicidad = $this->Tamaño_Publicidad->findById($id);
+        $noticias = $this->Noticias->findById($id);
         $this->set(array(
-            'tamaño_publicidad' => $tamaño_publicidad,
-            '_serialize' => array('tamaño_publicidad')
+            'noticias' => $noticias,
+            '_serialize' => array('noticias')
         ));
     }
  
      
     public function edit($id = null) {
-        $this->Tamaño_Publicidad->id = $id;
-        if ($this->Tamaño_Publicidad->save($this->request->data)) {
+        $this->Noticias->id = $id;
+        if ($this->Noticias->save($this->request->data)) {
             $message = 'Saved';
         } else {
             $message = 'Error';
@@ -55,7 +55,7 @@ class RestTamaño_PublicidadController extends AppController {
     }
      
     public function delete($id) {
-        if ($this->Tamaño_Publicidad->delete($id)) {
+        if ($this->Noticias->delete($id)) {
             $message = 'Deleted';
         } else {
             $message = 'Error';
