@@ -43,8 +43,60 @@ class AppController extends Controller {
     if(in_array($this->params['controller'],array('rest_anuncios'))){
         $this->Auth->allow();
         $this->Security->unlockedActions = array('edit','delete','add','view');
-         
-    }else{
+    }
+    if(in_array($this->params['controller'],array('rest_categoria_anuncios'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_imagenes_anuncios'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_sector_anuncios'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_usuarios'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_roles'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_pais'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_noticias'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_imagenes_noticias'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_categoria_noticias'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_tags_noticias'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_publicidad'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_categoria_publicidad'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    if(in_array($this->params['controller'],array('rest_tamanio_publicidad'))){
+        $this->Auth->allow();
+        $this->Security->unlockedActions = array('edit','delete','add','view');
+    }
+    else{
         $this->Auth->allow();         
     }
     
