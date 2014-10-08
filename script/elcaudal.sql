@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `categoria_noticias` (
 -- Estructura de tabla para la tabla `anuncios`
 --
 
-CREATE TABLE IF NOT EXISTS `anuncios` (
+CREATE TABLE IF NOT EXISTS `noticias` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(128) COLLATE utf8_bin DEFAULT NULL,
   `cuerpo` text COLLATE utf8_bin,

@@ -7,6 +7,7 @@ App::uses('AppModel', 'Model');
  *
  */
 class Rol extends AppModel {
-
+var $name = 'Rol';
+var $hasMany = 'Usuario';
 
 }

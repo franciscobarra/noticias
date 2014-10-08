@@ -7,10 +7,9 @@ App::uses('AppModel', 'Model');
  *
  */
 class Usuario extends AppModel {
-
- public $hasOne = array(
-        'Rol','Pais'
- );
+ var $name = 'Usuario';
+ var $belongsTo = array('Rol','Pais');
+ var $hasMany = array('Anuncio','Publicidad');
 
     public $validate = array(
         'username' => array(

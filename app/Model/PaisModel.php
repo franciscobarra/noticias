@@ -7,5 +7,6 @@ App::uses('AppModel', 'Model');
  *
  */
 class Pais extends AppModel {
-
+var $name = 'Pais';
+var $hasMany = 'Usuario';
 }
