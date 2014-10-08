@@ -1,7 +1,7 @@
 <?php
 
 class RestRolesController extends AppController {
-    public $uses = array('Rol');
+    public $uses = array('Roles');
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
  

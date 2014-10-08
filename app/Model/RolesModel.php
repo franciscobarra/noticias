@@ -6,8 +6,8 @@ App::uses('AppModel', 'Model');
  * Post Model
  *
  */
-class Rol extends AppModel {
-var $name = 'Rol';
+class Roles extends AppModel {
+var $name = 'Roles';
 var $hasMany = 'Usuario';
 
 }
