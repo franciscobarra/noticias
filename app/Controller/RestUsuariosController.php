@@ -25,7 +25,6 @@ class RestUsuariosController extends AppController {
         }
         if ($this->request->is('get')) {
             if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirect());
                 $this->set(array(
                  'user' => $this->Auth->user(),
                  '_serialize' => array('user')
