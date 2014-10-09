@@ -8,6 +8,8 @@
 /build
 /dist
 /tags
+nbproject
+nbproject/*
 *.mo
 
 # IDE and editor specific files #

@@ -1,8 +1,10 @@
 <?php
 
-class Publicidad extends AppModel {
+App::uses('AppModel', 'Model');
 
- public $belongsTo = array(
-        'Usuario','Categoria_Publicidad','Tamaño_Publicidad'
+class Publicidad extends AppModel {
+var $name = 'Publicidad';
+ var $belongsTo = array(
+        'Usuario','Categoria_Publicidad','Tamanio_Publicidad'
  );
 }

@@ -2,7 +2,7 @@
 
 class Publicidad extends AppModel {
 
- public $belongsTo = array(
+ var $belongsTo = array(
         'Usuario','tags_noticias','imagenes_noticias','categoria_noticias'
  );
 }
