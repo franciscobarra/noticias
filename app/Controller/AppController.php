@@ -34,94 +34,32 @@ class AppController extends Controller {
     
     public $components = array(
 		'Session',
-        'Auth',
-		'Security'
+                'Auth'=>array(
+                    'loginRedirect'=>array('controller'=>'client','action'=>'view'),
+                    'logoutRedirect'=>array('controller'=>'client','action'=>'view'),
+                    'authError'=>'No puede ingresar a esta pagina',
+                    'authorize'=>array('Controller')
+                ),
 	);
     
    public function beforeFilter() {
-       
-    if(in_array($this->params['controller'],array('rest_anuncios'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_categoria_anuncios'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_imagenes_anuncios'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_sector_anuncios'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_usuarios'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_roles'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_pais'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_noticias'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_imagenes_noticias'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_categoria_noticias'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_tags_noticias'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_publicidad'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_categoria_publicidad'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    if(in_array($this->params['controller'],array('rest_tamanio_publicidad'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-    }
-    else{
-        $this->Auth->allow();         
-    }
-    
-  /*
-    if(in_array($this->params['controller'],array('rest_usuarios'))){
-        $this->Auth->allow();
-        $this->Security->unlockedActions = array('edit','delete','add','view');
-         
-    }else{
-        $this->Auth->allow();         
-    }
-    
-        $this->Auth->sessionKey = false;
         $this->Auth->authorize = array('Controller');
         $this->Auth->authenticate = array(
             'all' => array(
-                //'scope' => array('User.is_active' => 1)
             ),
             'Basic'
         );
-*/
-        $this->Auth->allow();
-    
-        
-}
+
+        $this->Auth->allow(); //autorizar
+    }
+
+    public function isAuthorized($usuario) {
+        if (isset($usuario['role']) && ($usuario['role'] == 'admin')) {
+            return true;
+        }
+        return false;
+    }
+   
 
 }
 

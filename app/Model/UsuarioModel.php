@@ -11,26 +11,25 @@ class Usuario extends AppModel {
  var $belongsTo = array('Roles','Pais');
  var $hasMany = array('Anuncio','Publicidad');
 
-    public $validate = array(
-        'username' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'A username is required'
-            )
-        ),
-        'password' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'A password is required'
-            )
-        ),
-        'role' => array(
-            'valid' => array(
-                'rule' => array('inList', array('admin', 'author')),
-                'message' => 'Please enter a valid role',
-                'allowEmpty' => false
-            )
-        )
-    );
+    public function beforeValidate($options = array()) {
+        parent::beforeValidate($options);
+        $this->_prepareValidationRules();
+    }
+
+    protected function _prepareValidationRules() {
+        if (!empty($this->apiValidation)) { // for API
+            $this->validate = array(
+                'username' => array(
+                    'rule' => 'notEmpty',
+                    'message' => 'Error in field Name'
+            ));
+        } else { // default behaviour
+            $this->validate = array(
+                'username' => array(
+                    'rule' => 'notEmpty',
+                    'message' =>  '1'
+            ));
+        }
+    }
 
 }

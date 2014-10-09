@@ -10,7 +10,48 @@ class RestUsuariosController extends AppController {
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
 
- 
+    
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Usuario->apiValidation = true;
+    }
+    
+    public function login() {
+        if ($this->Auth->user()) {
+            $this->set(array(
+                'message' => 'Ya estas logeado',
+                '_serialize' => array('message')
+            ));
+        }
+        if ($this->request->is('get')) {
+            if ($this->Auth->login()) {
+                return $this->redirect($this->Auth->redirect());
+                $this->set(array(
+                 'user' => $this->Auth->user(),
+                 '_serialize' => array('user')
+                ));
+            }else{
+                 $this->set(array(
+                    'message' => 'error',
+                    '_serialize' => array('message')
+                ));
+            }
+        }
+        $this->Session->setFlash(__('no se puede ingresar usuario'));
+    }
+
+    public function logout() {
+        if ($this->Auth->logout()) {
+            $this->set(array(
+                'message' => array(
+                    'text' => __('Logout successfully'),
+                    'type' => 'info'
+                ),
+                '_serialize' => array('message')
+            ));
+        }
+    }
+    
     public function index() {
         $usuarios = $this->Usuario->find('all');
         $this->set(array(
@@ -20,16 +61,20 @@ class RestUsuariosController extends AppController {
     }
  
     public function add() {
+        
         $this->Usuario->create();
-        if ($this->Usuario->save($this->request->data)) {
-             $message = 'Created';
+        if ($this->Usuario->saveAll($this->request->data)) {
+            
+             $message = 'agregado';
         } else {
-            $message = 'Error';
+            $message = 'error';
         }
         $this->set(array(
             'message' => $message,
             '_serialize' => array('message')
         ));
+        
+        
     }
      
     public function view($id) {
