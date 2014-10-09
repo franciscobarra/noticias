@@ -11,7 +11,7 @@ var $name = 'Pais';
 var $hasMany = array(
         'User' => array(
             'className'    => 'User',
-            'foreignKey'   => 'users_id'
+            'foreignKey'   => 'id'
         ),
 
     );

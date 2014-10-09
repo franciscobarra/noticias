@@ -7,15 +7,16 @@ App::uses('AppModel', 'Model');
  *
  */
 class User extends AppModel {
+
  var $name = 'User';
  var $belongsTo = array(
         'Roles' => array(
             'className'    => 'Roles',
-            'foreignKey'   => 'roles_id'
+            'foreignKey'   => 'id_roles'
         ),
         'Pais' => array(
             'className'    => 'Pais',
-            'foreignKey'   => 'pais_id'
+            'foreignKey'   => 'id_pais'
         )
     );
 
