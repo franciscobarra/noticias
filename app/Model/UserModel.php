@@ -6,10 +6,18 @@ App::uses('AppModel', 'Model');
  * User Model
  *
  */
-class Usuario extends AppModel {
- var $name = 'Usuario';
- var $belongsTo = array('Roles','Pais');
- var $hasMany = array('Anuncio','Publicidad');
+class User extends AppModel {
+ var $name = 'User';
+ var $belongsTo = array(
+        'Role' => array(
+            'className'    => 'Roles',
+            'foreignKey'   => 'Roles_id'
+        ),
+        'Pais' => array(
+            'className'    => 'Pais',
+            'foreignKey'   => 'Pais_id'
+        )
+    );
 
     public function beforeValidate($options = array()) {
         parent::beforeValidate($options);

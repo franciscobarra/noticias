@@ -35,23 +35,11 @@
  * how to customize the loading of plugin routes.
  */
 	CakePlugin::routes();
-        Router::mapResources('rest_anuncios');
-        Router::mapResources('rest_categoria_anuncios');
-        Router::mapResources('rest_imagenes_anuncios');
-        Router::mapResources('rest_sector_anuncios');
+
+        Router::mapResources("users");
+        Router::mapResources("roles");
+        Router::mapResources("pais");
         
-        Router::mapResources("rest_usuarios");
-        Router::mapResources("rest_roles");
-        Router::mapResources("rest_pais");
-        
-        Router::mapResources('rest_noticias');
-        Router::mapResources('rest_imagenes_noticias');
-        Router::mapResources('rest_categoria_noticias');
-        Router::mapResources('rest_tags_noticias');
-        
-        Router::mapResources('rest_publicidad');
-        Router::mapResources('rest_categoria_publicidad');
-        Router::mapResources('rest_tamanio_publicidad');
         
         Router::parseExtensions();
 /**

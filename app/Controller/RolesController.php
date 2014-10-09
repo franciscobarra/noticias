@@ -1,27 +1,23 @@
 <?php
 
-App::uses('AppController', 'Controller');
-App::uses('AuthComponent', 'Controller/Component');
-
-
-class RestTamanio_PublicidadController extends AppController {
-   
-    public $uses = array('Tamanio_Publicidad');
+class RolesController extends AppController {
+    
+    public $uses = array('Roles');
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
-
+ 
  
     public function index() {
-        $tamanio_publicidad = $this->Tamanio_Publicidad->find('all');
+        $roles = $this->Roles->find('all');
         $this->set(array(
-            'tamanio_publicidad' => $tamanio_publicidad,
-            '_serialize' => array('tamanio_publicidad')
+            'roles' => $roles,
+            '_serialize' => array('roles')
         ));
     }
  
     public function add() {
-        $this->Tamanio_Publicidad->create();
-        if ($this->Tamanio_Publicidad->save($this->request->data)) {
+        $this->Roles->create();
+        if ($this->Roles->save($this->request->data)) {
              $message = 'Created';
         } else {
             $message = 'Error';
@@ -33,17 +29,17 @@ class RestTamanio_PublicidadController extends AppController {
     }
      
     public function view($id) {
-        $tamanio_publicidad = $this->Tamanio_Publicidad->findById($id);
+        $roles = $this->Roles->findById($id);
         $this->set(array(
-            'tamanio_publicidad' => $tamanio_publicidad,
-            '_serialize' => array('tamanio_publicidad')
+            'roles' => $roles,
+            '_serialize' => array('roles')
         ));
     }
  
      
-    public function edit($id = null) {
-        $this->Tamanio_Publicidad->id = $id;
-        if ($this->Tamanio_Publicidad->save($this->request->data)) {
+    public function edit($id) {
+        $this->Roles->id = $id;
+        if ($this->Roles->save($this->request->data)) {
             $message = 'Saved';
         } else {
             $message = 'Error';
@@ -55,7 +51,7 @@ class RestTamanio_PublicidadController extends AppController {
     }
      
     public function delete($id) {
-        if ($this->Tamanio_Publicidad->delete($id)) {
+        if ($this->Roles->delete($id)) {
             $message = 'Deleted';
         } else {
             $message = 'Error';
@@ -65,5 +61,4 @@ class RestTamanio_PublicidadController extends AppController {
             '_serialize' => array('message')
         ));
     }
-
-}
+}       

@@ -48,10 +48,10 @@ CREATE TABLE IF NOT EXISTS `pais` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Estructura de tabla para la tabla `users`
 --
 
-CREATE TABLE IF NOT EXISTS `usuarios` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(128) COLLATE utf8_bin DEFAULT NULL,
   `apellido_pat` varchar(128) COLLATE utf8_bin DEFAULT NULL,
@@ -122,12 +122,12 @@ CREATE TABLE IF NOT EXISTS `anuncios` (
   `fecha_vigencia` datetime DEFAULT NULL,
   `longitud` float DEFAULT NULL,
   `latitud` float DEFAULT NULL,
-  `id_usuario` int(10) NOT NULL,
+  `id_users` int(10) NOT NULL,
   `id_imagenes_anuncios` int(10) NOT NULL,
   `id_categoria_anuncios` int(10) NOT NULL,
   `id_sector_anuncios` int(10) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_usuario` (`id_usuario`),
+  KEY `id_users` (`id_users`),
   KEY `id_imagenes_anuncios` (`id_imagenes_anuncios`),
   KEY `id_categoria_anuncios` (`id_categoria_anuncios`),
   KEY `id_sector_anuncios` (`id_sector_anuncios`)
@@ -171,11 +171,11 @@ CREATE TABLE IF NOT EXISTS `publicidad` (
   `fecha_publicacion` datetime DEFAULT NULL,
   `fecha_vigencia` datetime DEFAULT NULL,
   `url` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `id_usuario` int(10) NOT NULL,
+  `id_users` int(10) NOT NULL,
   `id_categoria_publicidad` int(10) NOT NULL,
   `id_tamanio_publicidad` int(10) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_usuario` (`id_usuario`),
+  KEY `id_uusers` (`id_users`),
   KEY `id_categoria_publicidad` (`id_categoria_publicidad`),
   KEY `id_tamanio_publicidad` (`id_tamanio_publicidad`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
@@ -231,12 +231,12 @@ CREATE TABLE IF NOT EXISTS `noticias` (
   `cuerpo` text COLLATE utf8_bin,
   `fecha_publicacion` datetime DEFAULT NULL,
   `estado` int(2) NOT NULL,
-  `id_usuario` int(10) NOT NULL,
+  `id_users` int(10) NOT NULL,
   `id_imagenes_noticias` int(10) NOT NULL,
   `id_tags_noticias` int(10) NOT NULL,
   `id_categoria_noticias` int(10) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_usuario` (`id_usuario`),
+  KEY `id_users` (`id_users`),
   KEY `id_imagenes_noticias` (`id_imagenes_noticias`),
   KEY `id_tags_noticias` (`id_tags_noticias`),
   KEY `id_categoria_noticias` (`id_categoria_noticias`)
@@ -247,25 +247,25 @@ CREATE TABLE IF NOT EXISTS `noticias` (
 
 
 --
--- Filtros para la tabla `usuarios`
+-- Filtros para la tabla `users`
 --
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`id_pais`) REFERENCES `pais` (`id`) ON DELETE CASCADE;
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`id_pais`) REFERENCES `pais` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `anuncios`
-  ADD CONSTRAINT `anuncios_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `anuncios_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `anuncios_ibfk_2` FOREIGN KEY (`id_imagenes_anuncios`) REFERENCES `imagenes_anuncios` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `anuncios_ibfk_3` FOREIGN KEY (`id_sector_anuncios`) REFERENCES `sector_anuncios` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `anuncios_ibfk_4` FOREIGN KEY (`id_categoria_anuncios`) REFERENCES `categoria_anuncios` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `publicidad`
-  ADD CONSTRAINT `publicidad_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `publicidad_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `publicidad_ibfk_2` FOREIGN KEY (`id_categoria_publicidad`) REFERENCES `categoria_publicidad` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `publicidad_ibfk_3` FOREIGN KEY (`id_tamanio_publicidad`) REFERENCES `tamanio_publicidad` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `noticias`
-  ADD CONSTRAINT `noticias_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `noticias_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `noticias_ibfk_2` FOREIGN KEY (`id_imagenes_noticias`) REFERENCES `imagenes_noticias` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `noticias_ibfk_3` FOREIGN KEY (`id_tags_noticias`) REFERENCES `tags_noticias` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `noticias_ibfk_4` FOREIGN KEY (`id_categoria_noticias`) REFERENCES `categoria_noticias` (`id`) ON DELETE CASCADE;

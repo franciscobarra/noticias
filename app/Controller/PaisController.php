@@ -1,27 +1,23 @@
 <?php
 
-App::uses('AppController', 'Controller');
-App::uses('AuthComponent', 'Controller/Component');
-
-
-class RestNoticiasController extends AppController {
-   
-    public $uses = array('Noticias');
+class PaisController extends AppController {
+  
+    public $uses = array('Pais');
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
-
+ 
  
     public function index() {
-        $noticias = $this->Noticias->find('all');
+        $pais = $this->Pais->find('all');
         $this->set(array(
-            'noticias' => $noticias,
-            '_serialize' => array('noticias')
+            'pais' => $pais,
+            '_serialize' => array('pais')
         ));
     }
  
     public function add() {
-        $this->Noticias->create();
-        if ($this->Noticias->save($this->request->data)) {
+        $this->Pais->create();
+        if ($this->Pais->save($this->request->data)) {
              $message = 'Created';
         } else {
             $message = 'Error';
@@ -33,17 +29,17 @@ class RestNoticiasController extends AppController {
     }
      
     public function view($id) {
-        $noticias = $this->Noticias->findById($id);
+        $pais = $this->Pais->findById($id);
         $this->set(array(
-            'noticias' => $noticias,
-            '_serialize' => array('noticias')
+            'pais' => $pais,
+            '_serialize' => array('pais')
         ));
     }
  
      
-    public function edit($id = null) {
-        $this->Noticias->id = $id;
-        if ($this->Noticias->save($this->request->data)) {
+    public function edit($id) {
+        $this->Pais->id = $id;
+        if ($this->Pais->save($this->request->data)) {
             $message = 'Saved';
         } else {
             $message = 'Error';
@@ -55,7 +51,7 @@ class RestNoticiasController extends AppController {
     }
      
     public function delete($id) {
-        if ($this->Noticias->delete($id)) {
+        if ($this->Pais->delete($id)) {
             $message = 'Deleted';
         } else {
             $message = 'Error';
@@ -65,5 +61,4 @@ class RestNoticiasController extends AppController {
             '_serialize' => array('message')
         ));
     }
-
-}
+}       

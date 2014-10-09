@@ -8,6 +8,11 @@ App::uses('AppModel', 'Model');
  */
 class Roles extends AppModel {
 var $name = 'Roles';
-var $hasMany = 'Usuario';
+var $hasMany = array(
+        'User' => array(
+            'className'    => 'User',
+            'foreignKey'   => 'users_id'
+        ),
 
+    );
 }

@@ -4,16 +4,16 @@ App::uses('AppController', 'Controller');
 App::uses('AuthComponent', 'Controller/Component');
 
 
-class RestUsuariosController extends AppController {
+class UsersController extends AppController {
    
-    public $uses = array('Usuario');
+    public $uses = array('User');
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
 
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Usuario->apiValidation = true;
+        $this->User->apiValidation = true;
     }
     
     public function login() {
@@ -26,8 +26,8 @@ class RestUsuariosController extends AppController {
         if ($this->request->is('get')) {
             if ($this->Auth->login()) {
                 $this->set(array(
-                 'user' => $this->Auth->user(),
-                 '_serialize' => array('user')
+                 'users' => $this->Auth->user(),
+                 '_serialize' => array('users')
                 ));
             }else{
                  $this->set(array(
@@ -52,17 +52,17 @@ class RestUsuariosController extends AppController {
     }
     
     public function index() {
-        $usuarios = $this->Usuario->find('all');
+        $users = $this->User->find('all');
         $this->set(array(
-            'usuarios' => $usuarios,
-            '_serialize' => array('usuarios')
+            'users' => $users,
+            '_serialize' => array('users')
         ));
     }
  
     public function add() {
         
-        $this->Usuario->create();
-        if ($this->Usuario->saveAll($this->request->data)) {
+        $this->User->create();
+        if ($this->User->saveAll($this->request->data)) {
             
              $message = 'agregado';
         } else {
@@ -77,17 +77,17 @@ class RestUsuariosController extends AppController {
     }
      
     public function view($id) {
-        $usuarios = $this->Usuario->findById($id);
+        $users = $this->User->findById($id);
         $this->set(array(
-            'usuarios' => $usuarios,
-            '_serialize' => array('usuarios')
+            'users' => $users,
+            '_serialize' => array('users')
         ));
     }
  
      
     public function edit($id = null) {
-        $this->Usuario->id = $id;
-        if ($this->Usuario->save($this->request->data)) {
+        $this->User->id = $id;
+        if ($this->User->save($this->request->data)) {
             $message = 'Saved';
         } else {
             $message = 'Error';
@@ -99,7 +99,7 @@ class RestUsuariosController extends AppController {
     }
      
     public function delete($id) {
-        if ($this->Usuario->delete($id)) {
+        if ($this->User->delete($id)) {
             $message = 'Deleted';
         } else {
             $message = 'Error';

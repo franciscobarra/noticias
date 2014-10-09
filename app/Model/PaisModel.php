@@ -8,5 +8,11 @@ App::uses('AppModel', 'Model');
  */
 class Pais extends AppModel {
 var $name = 'Pais';
-var $hasMany = 'Usuario';
+var $hasMany = array(
+        'User' => array(
+            'className'    => 'User',
+            'foreignKey'   => 'users_id'
+        ),
+
+    );
 }
