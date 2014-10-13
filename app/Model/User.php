@@ -8,8 +8,8 @@ App::uses('AppModel', 'Model');
  */
 class User extends AppModel {
 
- var $name = 'User';
- var $belongsTo = array(
+    var $name = 'User';
+    var $belongsTo = array(
         'Roles' => array(
             'className'    => 'Roles',
             'foreignKey'   => 'id_roles'
@@ -19,6 +19,7 @@ class User extends AppModel {
             'foreignKey'   => 'id_pais'
         )
     );
+
     public function beforeValidate($options = array()) {
         parent::beforeValidate($options);
         $this->_prepareValidationRules();

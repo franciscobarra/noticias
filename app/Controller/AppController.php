@@ -33,14 +33,17 @@ class AppController extends Controller {
                 ),
 	);
     
-   public function beforeFilter() {
+    public function beforeFilter() {
         $this->Auth->authorize = array('Controller');
         $this->Auth->authenticate = array(
-            'all' => array(
-            ),
             'Basic'
         );
-
+        
+        $this->Auth->field = array(
+            "username" => "username",
+            "password" => "password"
+        );
+        
         $this->Auth->allow(); //autorizar
     }
 
