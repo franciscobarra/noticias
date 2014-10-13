@@ -62,11 +62,11 @@ class UsersController extends AppController {
     public function add() {
         
         $this->User->create();
-        if ($this->User->saveAll($this->request->data)) {
+        if ($this->User->save($this->request->data)) {
             
              $message = 'agregado';
         } else {
-            $message = 'error';
+            $message = $this->User->validationErrors;
         }
         $this->set(array(
             'message' => $message,

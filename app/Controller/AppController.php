@@ -23,6 +23,8 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
     
+    public $apiValidation = false;
+    
     public $components = array(
 		'Session',
                 'Auth'=>array(
