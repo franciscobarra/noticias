@@ -5,7 +5,7 @@ App::uses('AuthComponent', 'Controller/Component');
 
 
 class UsersController extends AppController {
-   
+    
     public $uses = array('User');
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
@@ -23,11 +23,12 @@ class UsersController extends AppController {
                 '_serialize' => array('message')
             ));
         }
-        if ($this->request->is('get')) {
+        
+        if ($this->request->is('post') && !$this->Auth->user()) {
             if ($this->Auth->login()) {
                 $this->set(array(
-                 'users' => $this->Auth->user(),
-                 '_serialize' => array('users')
+                    'user' => $this->Auth->user(),
+                    '_serialize' => array('user')
                 ));
             }else{
                  $this->set(array(
@@ -36,9 +37,10 @@ class UsersController extends AppController {
                 ));
             }
         }
+        
         $this->Session->setFlash(__('no se puede ingresar usuario'));
     }
-
+    
     public function logout() {
         if ($this->Auth->logout()) {
             $this->set(array(
