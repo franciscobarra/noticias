@@ -1,0 +1,16 @@
+<table ng-controller="viewpaisctrl">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Codigo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="pais in paises">
+            <td>{{ pais.Pais.id }}</td>
+            <td>{{ pais.Pais.nombre }}</td>
+            <td>{{ pais.Pais.codigo }}</td>
+        </tr>
+    </tbody>
+</table>
