@@ -65,7 +65,11 @@ class ClientController extends AppController {
         $data = null;
         $httpSocket = new HttpSocket();
         $data['User']['username'] = 'adm!@';
-        $data['User']['password'] = '79c7919b65a06801bb77c060b1b9f2ab64439cb'; //1234567
+        $data['User']['password'] = '79'; //1234567
+        $data['User']['nombre'] = 'ad mff';
+        $data['User']['apellido_pat'] = 'ad mff';
+        $data['User']['fecha_nacimiento'] = '10-10-2000';
+        $data['User']['rut']= '11.102.743-9';
         $response = $httpSocket->post($link, $data );
         $this->set('response_code', $response->code);
         $this->set('response_body', $response->body);
