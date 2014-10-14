@@ -6,7 +6,11 @@ class PaisController extends AppController {
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
  
- 
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Pais->apiValidation = true;
+    }
+    
     public function index() {
         $pais = $this->Pais->find('all');
         $this->set(array(
@@ -20,7 +24,7 @@ class PaisController extends AppController {
         if ($this->Pais->save($this->request->data)) {
              $message = 'Created';
         } else {
-            $message = 'Error';
+            $message = $this->Pais->validationErrors;
         }
         $this->set(array(
             'message' => $message,

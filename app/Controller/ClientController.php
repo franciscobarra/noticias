@@ -60,16 +60,13 @@ class ClientController extends AppController {
     public function request_add(){
      
         // remotely post the information to the server
-        $link =  "http://" . $_SERVER['HTTP_HOST'] . $this->webroot.'users.json';
+        $link =  "http://" . $_SERVER['HTTP_HOST'] . $this->webroot.'pais.json';
  
         $data = null;
-        $httpSocket = new HttpSocket();
-        $data['User']['username'] = 'adm!@';
-        $data['User']['password'] = '79'; //1234567
-        $data['User']['nombre'] = 'ad mff';
-        $data['User']['apellido_pat'] = 'ad mff';
-        $data['User']['fecha_nacimiento'] = '10-10-2000';
-        $data['User']['rut']= '11.102.743-9';
+        $httpSocket = new HttpSocket();       
+        $data['Pais']['id'] = '3';
+        $data['Pais']['codigo'] = '4343!';
+        $data['Pais']['nombre'] = 'hola!'; 
         $response = $httpSocket->post($link, $data );
         $this->set('response_code', $response->code);
         $this->set('response_body', $response->body);

@@ -6,7 +6,11 @@ class RolesController extends AppController {
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
  
- 
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Roles->apiValidation = true;
+    }
+    
     public function index() {
         $roles = $this->Roles->find('all');
         $this->set(array(
@@ -18,9 +22,9 @@ class RolesController extends AppController {
     public function add() {
         $this->Roles->create();
         if ($this->Roles->save($this->request->data)) {
-             $message = 'Created';
+             $message = 'Creado';
         } else {
-            $message = 'Error';
+           $message = $this->Roles->validationErrors;
         }
         $this->set(array(
             'message' => $message,

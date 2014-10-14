@@ -26,7 +26,7 @@ class User extends AppModel {
     }
 
     protected function _prepareValidationRules() {
-        if (!empty($this->apiValidation)) { // for API
+        if (!empty($this->apiValidation)) { 
             $this->validate = array(
                 
         /* Nombre De Usuario  */        
@@ -140,27 +140,51 @@ class User extends AppModel {
                         ),
                          'unique' => array(
                             'rule'    => 'isUnique',
-                            'message' => 'El rut ingresado, ya está registrado'
+                            'message' => 'El rut ingresado, ya esta registrado'
                         ),
-                        
-
-        ),
+                        'validar_rut' => array(
+                            'rule'    => 'valida_rut',
+                            'message' => 'El rut es invalido'
+                        ))
                 );
-        } else { // default behaviour
-            $this->validate = array(
-                'username' => array(
-                    'rule' => 'notEmpty',
-                    'required' => true,
-                    'message' =>  '1'
-            ));
         }
     }
     
     public function checkMayor_Edad($check) {
-  $bday = strtotime($check['fecha_nacimiento']);
-  if (time() < strtotime('+18 years', $bday)) return false;
-  return true;
-}
+        $bday = strtotime($check['fecha_nacimiento']);
+        if (time() < strtotime('+18 years', $bday)) return false;
+        return true;
+    }
+    public function valida_rut() {
+        $r = $this->data['User']['rut'];    
+        $r=strtoupper(ereg_replace('\.|,|-','',$r));
+        $sub_rut=substr($r,0,strlen($r)-1);
+        $sub_dv=substr($r,-1);
+        $x=2;
+        $s=0;
+        for ( $i=strlen($sub_rut)-1;$i>=0;$i-- ){
+                     if ( $x >7 ){
+                          $x=2;
+                      }
 
+                $s += $sub_rut[$i]*$x;
+                $x++;
+        }
+
+                $dv=11-($s%11);
+                if ( $dv==10 ){
+                $dv='K';
+        }
+                if ( $dv==11 ){
+                $dv='0';
+        }
+                if ( $dv==$sub_dv ){ 
+                        return true;
+                 }
+            else{
+                $this->invalidate('rut');   
+                return false;
+        }
+    }
 
 }
