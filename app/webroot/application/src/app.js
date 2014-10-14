@@ -8,23 +8,9 @@ angular.module('app', [
     'ngCookies'
 ])
 
-.controller('applicationController', function($scope, 
-                                              USER_ROLES,
-                                              AuthService) {
-    
-    $scope.currentUser = null
-    $scope.userRoles = USER_ROLES
-    $scope.isAuthorized = AuthService.isAuthorized
-    
-    $scope.setCurrentUser = function(user) {
-        $scope.currentUser = user
-    }
-    
-})
-
-/* ------------------------------------------------------------------------
- * SERVICES URL 
- * ------------------------------------------------------------------------
+/* -----------------------------------------------------------------------
+ * REST URL SERVICES
+ * -----------------------------------------------------------------------
  */
 
 .service('servicesUrl', function($location){
@@ -34,6 +20,3 @@ angular.module('app', [
     
     return this
 })
-
-
-
