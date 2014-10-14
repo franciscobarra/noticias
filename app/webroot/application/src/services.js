@@ -141,20 +141,22 @@ angular.module('app.services', [])
         return $http
                 .post(url)
                 .then(function(response) {
-                    user = {
-                        id : response.data.user.id,
-                        nombre : response.data.user.nombre,
-                        apellido_pat : response.data.user.apellido_pat,
-                        apellido_mat : response.data.user.apellido_mat,
-                        fecha_ingreso : response.data.user.fecha_ingreso,
-                        fecha_nacimiento : response.data.user.fecha_nacimiento,
-                        rut : response.data.user.rut,
-                        username : response.data.user.username,
-                        pais : response.data.user.Pais.nombre,
-                        rol : response.data.user.Roles.nombre
-                    }
+                    if(response.data.user != null) {
+                        user = {
+                         id : response.data.user.id,
+                         nombre : response.data.user.nombre,
+                         apellido_pat : response.data.user.apellido_pat,
+                         apellido_mat : response.data.user.apellido_mat,
+                         fecha_ingreso : response.data.user.fecha_ingreso,
+                         fecha_nacimiento : response.data.user.fecha_nacimiento,
+                         rut : response.data.user.rut,
+                         username : response.data.user.username,
+                         pais : response.data.user.Pais.nombre,
+                         rol : response.data.user.Roles.nombre
+                        }
                 
-                    Session.create(user)
+                        Session.create(user)
+                    }
                 })
     }
     
