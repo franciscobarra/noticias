@@ -12,7 +12,7 @@ Choose your action
 
 </p>
 
-<h1>Client Actions Users</h1>
+<h1>Noticias</h1>
 <p>
 Choose your action
 <ul>

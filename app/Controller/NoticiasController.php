@@ -1,49 +1,58 @@
 <?php
 
-class PaisController extends AppController {
-  
-    public $uses = array('Pais');
+App::uses('AppController', 'Controller');
+App::uses('AuthComponent', 'Controller/Component');
+
+
+class NoticiasController extends AppController {
+    
+    public $uses = array('Noticia');
     public $helpers = array('Html', 'Form');
     public $components = array('RequestHandler');
- 
+
+    
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Pais->apiValidation = true;
-    }
+        $this->Noticia->apiValidation = true;
+    }   
     
     public function index() {
-        $pais = $this->Pais->find('all');
+        $Noticias = $this->Noticia->find('all');
         $this->set(array(
-            'pais' => $pais,
-            '_serialize' => array('pais')
+            'Noticias' => $Noticias,
+            '_serialize' => array('Noticias')
         ));
     }
  
     public function add() {
-        $this->Pais->create();
-        if ($this->Pais->save($this->request->data)) {
-             $message = 'Created';
+        
+        $this->Noticia->create();
+        if ($this->Noticia->save($this->request->data)) {
+            
+             $message = 'agregado';
         } else {
-            $message = $this->Pais->validationErrors;
+            $message = $this->Noticia->validationErrors;
         }
         $this->set(array(
             'message' => $message,
             '_serialize' => array('message')
         ));
+        
+        
     }
      
     public function view($id) {
-        $pais = $this->Pais->findById($id);
+        $Noticias = $this->Noticia->findById($id);
         $this->set(array(
-            'pais' => $pais,
-            '_serialize' => array('pais')
+            'Noticias' => $Noticias,
+            '_serialize' => array('Noticias')
         ));
     }
  
      
-    public function edit($id) {
-        $this->Pais->id = $id;
-        if ($this->Pais->save($this->request->data)) {
+    public function edit($id = null) {
+        $this->Noticia->id = $id;
+        if ($this->Noticia->save($this->request->data)) {
             $message = 'Saved';
         } else {
             $message = 'Error';
@@ -55,7 +64,7 @@ class PaisController extends AppController {
     }
      
     public function delete($id) {
-        if ($this->Pais->delete($id)) {
+        if ($this->Noticia->delete($id)) {
             $message = 'Deleted';
         } else {
             $message = 'Error';
@@ -65,4 +74,5 @@ class PaisController extends AppController {
             '_serialize' => array('message')
         ));
     }
-}       
+
+}

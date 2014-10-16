@@ -36,9 +36,8 @@
  */
 	CakePlugin::routes();
 
-        Router::mapResources("users");
-        Router::mapResources("roles");
-        Router::mapResources("pais");
+        Router::mapResources("noticias");
+
         
         
         Router::parseExtensions();

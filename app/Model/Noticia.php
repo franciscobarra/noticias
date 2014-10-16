@@ -3,64 +3,73 @@
 App::uses('AppModel', 'Model');
 
 /**
- * Post Model
+ * Noticia Model
  *
  */
-class Roles extends AppModel {
-    var $name = 'Roles';
-    var $hasMany = array(
-            'User' => array(
-                'className'    => 'User',
-                'foreignKey'   => 'id'
-            ),
+class Noticia extends AppModel {
 
-        );
+    var $name = 'Noticia';
 
     public function beforeValidate($options = array()) {
         parent::beforeValidate($options);
         $this->_prepareValidationRules();
     }
-        
+
     protected function _prepareValidationRules() {
         if (!empty($this->apiValidation)) { 
             $this->validate = array(
-        
-        /*Nombre*/
-                'nombre' => array(
+       /*titulo*/
+                'titulo' => array(
                     'nonEmpty' => array(
                         'rule' => array('notEmpty'),
                         'required' => true,
-                        'message' => 'Se Requiere ingresar un Nombre',
+                        'message' => 'Se Requiere ingresar un Titulo',
                         'allowEmpty' => false
                     ),
                     'between' => array( 
-                        'rule' => array('between', 5, 150), 
+                        'rule' => array('between', 5, 200), 
                         'required' => true, 
-                        'message' => 'El Nombre debe tener minimo de 5 a 150 caracteres'
+                        'message' => 'El Titulo debe tener minimo de 5 a 200 caracteres'
                     ),
                     'pattern'=>array(
                         'rule'      => array('custom', '/^[a-z ]*$/i'),
                         'message'   => 'Solo se pueden ingresar letras',
                     )),
-        /*Codigo*/
-                'codigo' => array(
+        /*Cuerpo*/
+                'cuerpo' => array(
                     'nonEmpty' => array(
                         'rule' => array('notEmpty'),
                         'required' => true,
-                        'message' => 'Se Requiere ingresar un Codigo',
+                        'message' => 'Se Requiere ingresar un Cuerpo',
                         'allowEmpty' => false
                     ),
                     'between' => array( 
-                        'rule' => array('between', 5, 150), 
+                        'rule' => array('between', 5, 200), 
                         'required' => true, 
-                        'message' => 'El Codigo debe tener minimo de 5 a 150 caracteres'
+                        'message' => 'El Cuerpo debe tener minimo de 5 a 200 caracteres'
                     ),
                     'pattern'=>array(
                         'rule'      => array('custom', '/^[a-z ]*$/i'),
                         'message'   => 'Solo se pueden ingresar letras',
-                    ))        
-
+                    )),
+        /*contacto*/
+                'contacto' => array(
+                    'nonEmpty' => array(
+                        'rule' => array('notEmpty'),
+                        'required' => true,
+                        'message' => 'Se Requiere ingresar un contacto',
+                        'allowEmpty' => false
+                    ),
+                    'numero'=>array(
+                        'rule'      => 'numeric',
+                        'message' => 'Solo se deben ingresar numeros',
+                    ))         
+        
+     
                 );
         }
     }
+    
+  
+
 }
